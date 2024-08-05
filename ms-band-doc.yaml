@@ -1,0 +1,2764 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+host: localhost:8084
+basePath: /
+tags:
+  - name: Band Controller
+    description: Band Rest Controller V 1
+  - name: Contact Controller
+    description: Contact Rest Controller V 1
+  - name: Music Controller
+    description: Music Rest Controller V 1
+  - name: Musician Controller
+    description: Musician Rest Controller V 1
+  - name: Musician type Controller
+    description: Musician Type Rest Controller V 1
+  - name: Quote Request Controller
+    description: Quote Request Rest Controller V 1
+  - name: basic-error-controller
+    description: Basic Error Controller
+paths:
+  /error:
+    get:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    head:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingHEAD
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+    post:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingDELETE
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+    options:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingOPTIONS
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+    patch:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/band:
+    get:
+      tags:
+        - Band Controller
+      summary: Searches all bands
+      operationId: findBandsUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: false
+          type: string
+        - name: cityId
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: countryIso
+          in: query
+          required: false
+          type: string
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: paged
+          in: query
+          required: false
+          type: boolean
+        - name: sort.sorted
+          in: query
+          required: false
+          type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          type: boolean
+        - name: stateIso
+          in: query
+          required: false
+          type: string
+        - name: unpaged
+          in: query
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Page«BandResponse»'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - Band Controller
+      summary: Creates a new band
+      operationId: createUsingPOST
+      consumes:
+        - multipart/form-data
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: profilePicture
+          in: formData
+          description: profilePicture
+          required: false
+          type: file
+        - in: formData
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/BandRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/URI'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/band/all/name:
+    get:
+      tags:
+        - Band Controller
+      summary: Find the all names of all user's bands with the given uuids
+      operationId: getAllMyBandNamesUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/band/my-bands:
+    get:
+      tags:
+        - Band Controller
+      summary: Searches the bands that the authenticated person own
+      operationId: findAuthenticatedPersonBandsUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: cityId
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: countryIso
+          in: query
+          required: false
+          type: string
+        - name: creationDateEnd
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: creationDateEndMilliseconds
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: creationDateStart
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: creationDateStartMilliseconds
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: paged
+          in: query
+          required: false
+          type: boolean
+        - name: sort.sorted
+          in: query
+          required: false
+          type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          type: boolean
+        - name: stateIso
+          in: query
+          required: false
+          type: string
+        - name: unpaged
+          in: query
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Page«BandResponse»'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/band/name:
+    get:
+      tags:
+        - Band Controller
+      summary: Find the names of the bands with the given uuids
+      operationId: getNamesUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandsUuids
+          in: query
+          description: bandsUuids
+          required: true
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/band/{bandUuid}:
+    put:
+      tags:
+        - Band Controller
+      summary: Update a band
+      operationId: updateUsingPUT
+      consumes:
+        - multipart/form-data
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+        - name: profilePicture
+          in: formData
+          description: profilePicture
+          required: false
+          type: file
+        - in: formData
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateBandRequest'
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/band/{bandUuid}/musicians:
+    get:
+      tags:
+        - Band Controller
+      summary: Find all band's musicians
+      operationId: findMusiciansUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MusicianResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/band/{bandUuid}/picture:
+    delete:
+      tags:
+        - Band Controller
+      summary: Remove the profile picture of the given band
+      operationId: removeProfilePictureUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/band/{bandUuid}/profile:
+    get:
+      tags:
+        - Band Controller
+      summary: Searches for a band by its uuid
+      operationId: findProfileUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: false
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/BandProfileResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/band/{bandUuid}/quote-request:
+    get:
+      tags:
+        - Band Controller
+      summary: Find band's all quote requests
+      operationId: findQuoteRequestsUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+        - name: endDate
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: paged
+          in: query
+          required: false
+          type: boolean
+        - name: sort.sorted
+          in: query
+          required: false
+          type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          type: boolean
+        - name: startDate
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: statuses
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - NON_ANSWERED
+              - ANSWERED
+              - DECLINED
+          collectionFormat: multi
+          enum:
+            - NON_ANSWERED
+            - ANSWERED
+            - DECLINED
+        - name: unpaged
+          in: query
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Page«BriefQuoteRequestResponse»'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/band/{bandUuid}/toggle:
+    patch:
+      tags:
+        - Band Controller
+      summary: Toggle band's activity flag
+      operationId: toggleBandActivityUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/contact/band/{bandUuid}:
+    get:
+      tags:
+        - Contact Controller
+      summary: List all band contacts
+      operationId: listBandContactUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: false
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ContactResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/contact/band/{bandUuid}/contact/{contactUuid}:
+    put:
+      tags:
+        - Contact Controller
+      summary: Update a band contact
+      operationId: updateBandContactUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+        - name: contactUuid
+          in: path
+          description: contactUuid
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/ContactRequest'
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - Contact Controller
+      summary: Remove a band contact
+      operationId: removeBandContactUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+        - name: contactUuid
+          in: path
+          description: contactUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/contact/band/{uuid}:
+    post:
+      tags:
+        - Contact Controller
+      summary: Creates a new band contact
+      operationId: createBandContactUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/ContactRequest'
+        - name: uuid
+          in: path
+          description: uuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ContactResponse'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/music:
+    get:
+      tags:
+        - Music Controller
+      summary: Find music by criteria
+      operationId: findByCriteriaUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: artist
+          in: query
+          required: false
+          type: string
+        - name: author
+          in: query
+          required: false
+          type: string
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: paged
+          in: query
+          required: false
+          type: boolean
+        - name: sort.sorted
+          in: query
+          required: false
+          type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          type: boolean
+        - name: unpaged
+          in: query
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Page«MusicResponse»'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    patch:
+      tags:
+        - Music Controller
+      summary: Activate music
+      operationId: activateUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: musicUuid
+          in: query
+          description: musicUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/music/band/{bandUuid}:
+    get:
+      tags:
+        - Music Controller
+      summary: Find music by criteria
+      operationId: findBandMusicsUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: artist
+          in: query
+          required: false
+          type: string
+        - name: author
+          in: query
+          required: false
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: paged
+          in: query
+          required: false
+          type: boolean
+        - name: sort.sorted
+          in: query
+          required: false
+          type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          type: boolean
+        - name: unpaged
+          in: query
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Page«MusicResponse»'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - Music Controller
+      summary: Creates a new music
+      operationId: contributeUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/MusicRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UuidHolderDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/music/{musicUuid}:
+    get:
+      tags:
+        - Music Controller
+      summary: Find music by uuid
+      operationId: findByUuidUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: musicUuid
+          in: path
+          description: musicUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MusicResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - Music Controller
+      summary: Updates a music
+      operationId: updateUsingPUT_1
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - in: body
+          name: music
+          description: music
+          required: true
+          schema:
+            $ref: '#/definitions/MusicRequest'
+        - name: musicUuid
+          in: path
+          description: musicUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UuidHolderDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - Music Controller
+      summary: Deactivate music
+      operationId: deactivateUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: musicUuid
+          in: path
+          description: musicUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/musician:
+    get:
+      tags:
+        - Musician Controller
+      summary: Find musicians by criteria
+      operationId: findByCriteriaUsingGET_1
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: false
+          type: string
+        - name: active
+          in: query
+          required: false
+          type: boolean
+        - name: cityId
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: countryIso
+          in: query
+          required: false
+          type: string
+        - name: cpf
+          in: query
+          required: false
+          type: string
+        - name: email
+          in: query
+          required: false
+          type: string
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: paged
+          in: query
+          required: false
+          type: boolean
+        - name: sort.sorted
+          in: query
+          required: false
+          type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          type: boolean
+        - name: stateIso
+          in: query
+          required: false
+          type: string
+        - name: unpaged
+          in: query
+          required: false
+          type: boolean
+        - name: zipCode
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Page«MusicianWithAddressResponse»'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    patch:
+      tags:
+        - Musician Controller
+      summary: Activate a musicians of a band
+      operationId: activateUsingPATCH_1
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: musicianUuid
+          in: query
+          description: musicianUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/musician/band/{bandUuid}:
+    post:
+      tags:
+        - Musician Controller
+      summary: Creates a new musician
+      operationId: createUsingPOST_1
+      consumes:
+        - multipart/form-data
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+        - name: profilePicture
+          in: formData
+          description: profilePicture
+          required: false
+          type: file
+        - in: formData
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/MusicianRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UuidHolderDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/musician/cpf/{musicianCpf}:
+    get:
+      tags:
+        - Musician Controller
+      summary: Find musician by it's CPF
+      operationId: findByCpfUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: false
+          type: string
+        - name: musicianCpf
+          in: path
+          description: musicianCpf
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MusicianWithAddressResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/musician/type:
+    get:
+      tags:
+        - Musician type Controller
+      summary: List all available musician types by criteria
+      operationId: findByCriteriaUsingGET_2
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: paged
+          in: query
+          required: false
+          type: boolean
+        - name: sort.sorted
+          in: query
+          required: false
+          type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          type: boolean
+        - name: unpaged
+          in: query
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Page«MusicianTypeResponse»'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/musician/type/all:
+    get:
+      tags:
+        - Musician type Controller
+      summary: List all available musician types
+      operationId: findAllUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MusicianTypeResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/musician/{cpf}/band/{bandUuid}/associate:
+    post:
+      tags:
+        - Musician Controller
+      summary: Associate an already created musician to a band
+      operationId: associateUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+        - name: cpf
+          in: path
+          description: cpf
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UuidHolderDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/musician/{musicianUuid}:
+    get:
+      tags:
+        - Musician Controller
+      summary: Find musician by it's uuid
+      operationId: findByUuidUsingGET_1
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: false
+          type: string
+        - name: musicianUuid
+          in: path
+          description: musicianUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MusicianWithAddressResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - Musician Controller
+      summary: Updates a musician
+      operationId: updateUsingPUT_2
+      consumes:
+        - multipart/form-data
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: musicianUuid
+          in: path
+          description: musicianUuid
+          required: true
+          type: string
+        - name: profilePicture
+          in: formData
+          description: profilePicture
+          required: false
+          type: file
+        - in: formData
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/MusicianRequest'
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - Musician Controller
+      summary: Deactivate a musicians of a band
+      operationId: deactivateUsingDELETE_1
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: musicianUuid
+          in: path
+          description: musicianUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/musician/{musicianUuid}/avatar:
+    delete:
+      tags:
+        - Musician Controller
+      summary: Remove the musician's avatar
+      operationId: removeMusicianAvatarUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: musicianUuid
+          in: path
+          description: musicianUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/musician/{musicianUuid}/band/{bandUuid}/disassociate:
+    delete:
+      tags:
+        - Musician Controller
+      summary: Disassociate musician from a band
+      operationId: disassociateUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+        - name: musicianUuid
+          in: path
+          description: musicianUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/quote-request/dashboard:
+    get:
+      tags:
+        - Quote Request Controller
+      summary: Generate the band dashboard
+      operationId: dashboardUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: bandUuid
+          in: query
+          required: false
+          type: string
+        - name: endDate
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: startDate
+          in: query
+          required: false
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DashboardResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/quote-request/{quoteRequestUuid}:
+    get:
+      tags:
+        - Quote Request Controller
+      summary: Find a quote request by its uuid
+      operationId: findByUuidUsingGET_2
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: quoteRequestUuid
+          in: path
+          description: quoteRequestUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/CompleteBriefQuoteRequestResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - Quote Request Controller
+      summary: Decline a quote request
+      operationId: acceptUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: quoteRequestUuid
+          in: path
+          description: quoteRequestUuid
+          required: true
+          type: string
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/AcceptQuoteRequestRequest'
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - Quote Request Controller
+      summary: Decline a quote request
+      operationId: declineUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: quoteRequestUuid
+          in: path
+          description: quoteRequestUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/quote-request/{quoteRequestUuid}/lineup:
+    get:
+      tags:
+        - Quote Request Controller
+      summary: Download a PDF with the lineup
+      operationId: downloadLineupUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: quoteRequestUuid
+          in: path
+          description: quoteRequestUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/InputStreamResource'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/quote-request/{quoteRequestUuid}/playlist:
+    get:
+      tags:
+        - Quote Request Controller
+      summary: Download a PDF with the playlist
+      operationId: downloadPlaylistUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+        - name: quoteRequestUuid
+          in: path
+          description: quoteRequestUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/InputStreamResource'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  AcceptQuoteRequestRequest:
+    type: object
+    properties:
+      finalValue:
+        type: number
+      musicianUuids:
+        type: array
+        items:
+          type: string
+      observation:
+        type: string
+    title: AcceptQuoteRequestRequest
+  AddressRequest:
+    type: object
+    properties:
+      cityId:
+        type: integer
+        format: int64
+      complement:
+        type: string
+      countryIso:
+        type: string
+      neighbour:
+        type: string
+      number:
+        type: integer
+        format: int32
+      stateIso:
+        type: string
+      street:
+        type: string
+      zipCode:
+        type: string
+    title: AddressRequest
+  AddressResponse:
+    type: object
+    properties:
+      city:
+        type: string
+      cityId:
+        type: integer
+        format: int64
+      complement:
+        type: string
+      country:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      neighbour:
+        type: string
+      number:
+        type: integer
+        format: int32
+      state:
+        type: string
+      street:
+        type: string
+      zipCode:
+        type: string
+    title: AddressResponse
+  BandProfileResponse:
+    type: object
+    properties:
+      active:
+        type: boolean
+      address:
+        $ref: '#/definitions/AddressResponse'
+      contacts:
+        type: array
+        items:
+          $ref: '#/definitions/ContactResponse'
+      contributedMusics:
+        type: array
+        items:
+          $ref: '#/definitions/MusicResponse'
+      createdMusicians:
+        type: array
+        items:
+          $ref: '#/definitions/MusicianResponse'
+      creationDateMilliseconds:
+        type: integer
+        format: int64
+      description:
+        type: string
+      musicians:
+        type: array
+        items:
+          $ref: '#/definitions/MusicianResponse'
+      name:
+        type: string
+      ownerUuid:
+        type: string
+      profilePictureUuid:
+        type: string
+      uuid:
+        type: string
+    title: BandProfileResponse
+  BandRequest:
+    type: object
+    properties:
+      address:
+        $ref: '#/definitions/AddressRequest'
+      contacts:
+        type: array
+        items:
+          $ref: '#/definitions/ContactRequest'
+      description:
+        type: string
+      name:
+        type: string
+    title: BandRequest
+  BandResponse:
+    type: object
+    properties:
+      active:
+        type: boolean
+      address:
+        $ref: '#/definitions/AddressResponse'
+      creationDateMilliseconds:
+        type: integer
+        format: int64
+      description:
+        type: string
+      name:
+        type: string
+      profilePictureUuid:
+        type: string
+      updateDateMilliseconds:
+        type: integer
+        format: int64
+      uuid:
+        type: string
+    title: BandResponse
+  BriefQuoteRequestResponse:
+    type: object
+    properties:
+      creationDate:
+        type: integer
+        format: int64
+      eventUuid:
+        type: string
+      hired:
+        type: boolean
+      originQuoteRequestUuid:
+        type: string
+      quoteRequestUuid:
+        type: string
+      status:
+        type: string
+        enum:
+          - NON_ANSWERED
+          - ANSWERED
+          - DECLINED
+    title: BriefQuoteRequestResponse
+  CompleteBriefQuoteRequestResponse:
+    type: object
+    properties:
+      description:
+        type: string
+      eventUuid:
+        type: string
+      wantedMusicianTypes:
+        type: array
+        items:
+          $ref: '#/definitions/WantedMusicianTypeQuoteRequestResponse'
+      wantedMusics:
+        type: array
+        items:
+          $ref: '#/definitions/WantedMusicsQuoteRequestResponse'
+    title: CompleteBriefQuoteRequestResponse
+  ContactRequest:
+    type: object
+    properties:
+      content:
+        type: string
+      type:
+        type: string
+        enum:
+          - INSTAGRAM
+          - FACEBOOK
+          - WHATSAPP
+          - LINKEDIN
+          - WEBSITE
+          - OTHER
+    title: ContactRequest
+  ContactResponse:
+    type: object
+    properties:
+      content:
+        type: string
+      type:
+        type: string
+        enum:
+          - INSTAGRAM
+          - FACEBOOK
+          - WHATSAPP
+          - LINKEDIN
+          - WEBSITE
+          - OTHER
+      uuid:
+        type: string
+    title: ContactResponse
+  DashboardResponse:
+    type: object
+    properties:
+      allQuotes:
+        type: array
+        items:
+          $ref: '#/definitions/BriefQuoteRequestResponse'
+      quotePrices:
+        $ref: '#/definitions/QuotePricesDashboardPartResponse'
+      quoteStatuses:
+        $ref: '#/definitions/QuoteRequestStatusesDashboardPartResponse'
+    title: DashboardResponse
+  File:
+    type: object
+    properties:
+      absolute:
+        type: boolean
+      absoluteFile:
+        $ref: '#/definitions/File'
+      absolutePath:
+        type: string
+      canonicalFile:
+        $ref: '#/definitions/File'
+      canonicalPath:
+        type: string
+      directory:
+        type: boolean
+      file:
+        type: boolean
+      freeSpace:
+        type: integer
+        format: int64
+      hidden:
+        type: boolean
+      name:
+        type: string
+      parent:
+        type: string
+      parentFile:
+        $ref: '#/definitions/File'
+      path:
+        type: string
+      totalSpace:
+        type: integer
+        format: int64
+      usableSpace:
+        type: integer
+        format: int64
+    title: File
+  InputStream:
+    type: object
+    title: InputStream
+  InputStreamResource:
+    type: object
+    properties:
+      description:
+        type: string
+      file:
+        $ref: '#/definitions/File'
+      filename:
+        type: string
+      inputStream:
+        $ref: '#/definitions/InputStream'
+      open:
+        type: boolean
+      readable:
+        type: boolean
+      uri:
+        $ref: '#/definitions/URI'
+      url:
+        $ref: '#/definitions/URL'
+    title: InputStreamResource
+  ModelAndView:
+    type: object
+    properties:
+      empty:
+        type: boolean
+      model:
+        type: object
+      modelMap:
+        type: object
+        additionalProperties:
+          type: object
+      reference:
+        type: boolean
+      status:
+        type: string
+        enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+      view:
+        $ref: '#/definitions/View'
+      viewName:
+        type: string
+    title: ModelAndView
+  MusicRequest:
+    type: object
+    properties:
+      artist:
+        type: string
+      author:
+        type: string
+      name:
+        type: string
+      observation:
+        type: string
+    title: MusicRequest
+  MusicResponse:
+    type: object
+    properties:
+      active:
+        type: boolean
+      artist:
+        type: string
+      author:
+        type: string
+      creationDateTimestamp:
+        type: integer
+        format: int64
+      name:
+        type: string
+      observation:
+        type: string
+      uuid:
+        type: string
+    title: MusicResponse
+  MusicianRequest:
+    type: object
+    properties:
+      address:
+        $ref: '#/definitions/AddressRequest'
+      age:
+        type: integer
+        format: int32
+      birthday:
+        type: integer
+        format: int64
+      cpf:
+        type: string
+      email:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      typeUuids:
+        type: array
+        items:
+          type: string
+      types:
+        type: array
+        items:
+          $ref: '#/definitions/MusicianTypeRequest'
+    title: MusicianRequest
+  MusicianResponse:
+    type: object
+    properties:
+      active:
+        type: boolean
+      age:
+        type: integer
+        format: int32
+      avatarUuid:
+        type: string
+      birthDay:
+        type: integer
+        format: int64
+      cpf:
+        type: string
+      creationDateMilliseconds:
+        type: integer
+        format: int64
+      email:
+        type: string
+      firstName:
+        type: string
+      hasAccount:
+        type: boolean
+      hasStartedWithThisBand:
+        type: boolean
+      lastName:
+        type: string
+      types:
+        type: array
+        items:
+          $ref: '#/definitions/MusicianTypeResponse'
+      uuid:
+        type: string
+    title: MusicianResponse
+  MusicianTypeRequest:
+    type: object
+    properties:
+      uuid:
+        type: string
+    title: MusicianTypeRequest
+  MusicianTypeResponse:
+    type: object
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      uuid:
+        type: string
+    title: MusicianTypeResponse
+  MusicianWithAddressResponse:
+    type: object
+    properties:
+      active:
+        type: boolean
+      address:
+        $ref: '#/definitions/AddressResponse'
+      age:
+        type: integer
+        format: int32
+      avatarUuid:
+        type: string
+      birthDay:
+        type: integer
+        format: int64
+      cpf:
+        type: string
+      creationDateMilliseconds:
+        type: integer
+        format: int64
+      email:
+        type: string
+      firstName:
+        type: string
+      hasAccount:
+        type: boolean
+      hasStartedWithThisBand:
+        type: boolean
+      lastName:
+        type: string
+      types:
+        type: array
+        items:
+          $ref: '#/definitions/MusicianTypeResponse'
+      uuid:
+        type: string
+    title: MusicianWithAddressResponse
+  Pageable:
+    type: object
+    properties:
+      offset:
+        type: integer
+        format: int64
+      pageNumber:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      paged:
+        type: boolean
+      sort:
+        $ref: '#/definitions/Sort'
+      unpaged:
+        type: boolean
+    title: Pageable
+  Page«BandResponse»:
+    type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: '#/definitions/BandResponse'
+      empty:
+        type: boolean
+      first:
+        type: boolean
+      last:
+        type: boolean
+      number:
+        type: integer
+        format: int32
+      numberOfElements:
+        type: integer
+        format: int32
+      pageable:
+        $ref: '#/definitions/Pageable'
+      size:
+        type: integer
+        format: int32
+      sort:
+        $ref: '#/definitions/Sort'
+      totalElements:
+        type: integer
+        format: int64
+      totalPages:
+        type: integer
+        format: int32
+    title: Page«BandResponse»
+  Page«BriefQuoteRequestResponse»:
+    type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: '#/definitions/BriefQuoteRequestResponse'
+      empty:
+        type: boolean
+      first:
+        type: boolean
+      last:
+        type: boolean
+      number:
+        type: integer
+        format: int32
+      numberOfElements:
+        type: integer
+        format: int32
+      pageable:
+        $ref: '#/definitions/Pageable'
+      size:
+        type: integer
+        format: int32
+      sort:
+        $ref: '#/definitions/Sort'
+      totalElements:
+        type: integer
+        format: int64
+      totalPages:
+        type: integer
+        format: int32
+    title: Page«BriefQuoteRequestResponse»
+  Page«MusicResponse»:
+    type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: '#/definitions/MusicResponse'
+      empty:
+        type: boolean
+      first:
+        type: boolean
+      last:
+        type: boolean
+      number:
+        type: integer
+        format: int32
+      numberOfElements:
+        type: integer
+        format: int32
+      pageable:
+        $ref: '#/definitions/Pageable'
+      size:
+        type: integer
+        format: int32
+      sort:
+        $ref: '#/definitions/Sort'
+      totalElements:
+        type: integer
+        format: int64
+      totalPages:
+        type: integer
+        format: int32
+    title: Page«MusicResponse»
+  Page«MusicianTypeResponse»:
+    type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: '#/definitions/MusicianTypeResponse'
+      empty:
+        type: boolean
+      first:
+        type: boolean
+      last:
+        type: boolean
+      number:
+        type: integer
+        format: int32
+      numberOfElements:
+        type: integer
+        format: int32
+      pageable:
+        $ref: '#/definitions/Pageable'
+      size:
+        type: integer
+        format: int32
+      sort:
+        $ref: '#/definitions/Sort'
+      totalElements:
+        type: integer
+        format: int64
+      totalPages:
+        type: integer
+        format: int32
+    title: Page«MusicianTypeResponse»
+  Page«MusicianWithAddressResponse»:
+    type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: '#/definitions/MusicianWithAddressResponse'
+      empty:
+        type: boolean
+      first:
+        type: boolean
+      last:
+        type: boolean
+      number:
+        type: integer
+        format: int32
+      numberOfElements:
+        type: integer
+        format: int32
+      pageable:
+        $ref: '#/definitions/Pageable'
+      size:
+        type: integer
+        format: int32
+      sort:
+        $ref: '#/definitions/Sort'
+      totalElements:
+        type: integer
+        format: int64
+      totalPages:
+        type: integer
+        format: int32
+    title: Page«MusicianWithAddressResponse»
+  QuotePricesDashboardPartResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/QuotePricesOfYearDashboardPartResponse'
+      label:
+        type: string
+      labels:
+        type: array
+        items:
+          type: string
+    title: QuotePricesDashboardPartResponse
+  QuotePricesOfYearDashboardPartResponse:
+    type: object
+    properties:
+      values:
+        type: array
+        items:
+          type: number
+      year:
+        type: integer
+        format: int32
+    title: QuotePricesOfYearDashboardPartResponse
+  QuoteRequestStatusesDashboardPartResponse:
+    type: object
+    properties:
+      backgroundColor:
+        type: array
+        items:
+          type: string
+      data:
+        type: array
+        items:
+          type: integer
+          format: int64
+      hoverBackgroundColor:
+        type: array
+        items:
+          type: string
+      labels:
+        type: array
+        items:
+          type: string
+    title: QuoteRequestStatusesDashboardPartResponse
+  Resource:
+    type: object
+    properties:
+      description:
+        type: string
+      file:
+        $ref: '#/definitions/File'
+      filename:
+        type: string
+      inputStream:
+        $ref: '#/definitions/InputStream'
+      open:
+        type: boolean
+      readable:
+        type: boolean
+      uri:
+        $ref: '#/definitions/URI'
+      url:
+        $ref: '#/definitions/URL'
+    title: Resource
+  Sort:
+    type: object
+    properties:
+      empty:
+        type: boolean
+      sorted:
+        type: boolean
+      unsorted:
+        type: boolean
+    title: Sort
+  URI:
+    type: object
+    properties:
+      absolute:
+        type: boolean
+      authority:
+        type: string
+      fragment:
+        type: string
+      host:
+        type: string
+      opaque:
+        type: boolean
+      path:
+        type: string
+      port:
+        type: integer
+        format: int32
+      query:
+        type: string
+      rawAuthority:
+        type: string
+      rawFragment:
+        type: string
+      rawPath:
+        type: string
+      rawQuery:
+        type: string
+      rawSchemeSpecificPart:
+        type: string
+      rawUserInfo:
+        type: string
+      scheme:
+        type: string
+      schemeSpecificPart:
+        type: string
+      userInfo:
+        type: string
+    title: URI
+  URL:
+    type: object
+    properties:
+      authority:
+        type: string
+      content:
+        type: object
+      defaultPort:
+        type: integer
+        format: int32
+      file:
+        type: string
+      host:
+        type: string
+      path:
+        type: string
+      port:
+        type: integer
+        format: int32
+      protocol:
+        type: string
+      query:
+        type: string
+      ref:
+        type: string
+      userInfo:
+        type: string
+    title: URL
+  UpdateBandRequest:
+    type: object
+    properties:
+      address:
+        $ref: '#/definitions/AddressRequest'
+      clearProfilePicture:
+        type: boolean
+      description:
+        type: string
+      name:
+        type: string
+    title: UpdateBandRequest
+  UuidHolderDTO:
+    type: object
+    properties:
+      uuid:
+        type: string
+    title: UuidHolderDTO
+  View:
+    type: object
+    properties:
+      contentType:
+        type: string
+    title: View
+  WantedMusicianTypeQuoteRequestResponse:
+    type: object
+    properties:
+      musicianTypeName:
+        type: string
+      musicianTypeUuid:
+        type: string
+      observation:
+        type: string
+      quantity:
+        type: integer
+        format: int32
+    title: WantedMusicianTypeQuoteRequestResponse
+  WantedMusicsQuoteRequestResponse:
+    type: object
+    properties:
+      musicArtist:
+        type: string
+      musicAuthor:
+        type: string
+      musicName:
+        type: string
+      musicUuid:
+        type: string
+      observation:
+        type: string
+      order:
+        type: integer
+        format: int32
+    title: WantedMusicsQuoteRequestResponse
