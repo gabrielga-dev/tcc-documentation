@@ -1,19 +1,80 @@
-<!-- HTML for static distribution bundle build -->
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
-    <title>Swagger UI</title>
-    <link rel="stylesheet" type="text/css" href="dist/swagger-ui.css" />
-    <link rel="stylesheet" type="text/css" href="dist/index.css" />
-    <link rel="icon" type="image/png" href="dist/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="dist/favicon-16x16.png" sizes="16x16" />
-  </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
 
-  <body>
-    <div id="swagger-ui"></div>
-    <script src="dist/swagger-ui-bundle.js" charset="UTF-8"> </script>
-    <script src="dist/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
-    <script src="dist/swagger-initializer.js" charset="UTF-8"> </script>
-  </body>
+        .menu-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .menu-container h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .menu-container a {
+            display: block;
+            margin: 15px 0;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #007BFF;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-container a:hover {
+            background-color: #0056b3;
+        }
+
+        .menu-container a .icon {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <h1>Documentações <i>MyEvents</i></h1>
+        <h4>Feito por Gabriel Guimarães de Almeida</h4>
+        <a href="pagina1.html">
+            <span class="icon">🧑🏻‍💻</span>
+            <i>ms-auth</i>
+        </a>
+        <a href="ms_band_doc.html">
+            <span class="icon">🎻</span>
+            <i>ms-band</i>
+        </a>
+        <a href="pagina1.html">
+            <span class="icon">🥳</span>
+            <i>ms-event</i>
+        </a>
+        <a href="pagina1.html">
+            <span class="icon">🗂️</span>
+            <i>ms-file</i>
+        </a>
+        <a href="pagina1.html">
+            <span class="icon">🗺️</span>
+            <i>ms-location</i>
+        </a>
+    </div>
+</body>
 </html>
