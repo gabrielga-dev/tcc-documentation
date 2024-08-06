@@ -1,0 +1,1131 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+host: localhost:8087
+basePath: /
+tags:
+  - name: Event Controller
+    description: Event Controller V 1
+  - name: Quote Controller
+    description: Quote Controller V 1
+  - name: Quote Request Controller
+    description: Quote Request Controller V 1
+  - name: basic-error-controller
+    description: Basic Error Controller
+paths:
+  /error:
+    get:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    head:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingHEAD
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+    post:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingDELETE
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+    options:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingOPTIONS
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+    patch:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/event:
+    get:
+      tags:
+        - Event Controller
+      summary: Find events by criteria
+      operationId: findByCriteriaUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: concluded
+          in: query
+          required: false
+          type: boolean
+        - name: finalDate
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: offset
+          in: query
+          required: false
+          type: integer
+          format: int64
+        - name: ownerUuid
+          in: query
+          required: false
+          type: string
+        - name: pageNumber
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: paged
+          in: query
+          required: false
+          type: boolean
+        - name: sort.sorted
+          in: query
+          required: false
+          type: boolean
+        - name: sort.unsorted
+          in: query
+          required: false
+          type: boolean
+        - name: startDate
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: unpaged
+          in: query
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Page«EventResponse»'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - Event Controller
+      summary: Creates a basic version of a event
+      operationId: createUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: request
+          description: request
+          required: true
+          schema:
+            $ref: '#/definitions/EventRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/URI'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/event/names:
+    get:
+      tags:
+        - Event Controller
+      summary: Find event's names
+      operationId: findNamesUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: eventUuids
+          in: query
+          description: eventUuids
+          required: true
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/event/{uuid}:
+    get:
+      tags:
+        - Event Controller
+      summary: Find an event by it's uuid
+      operationId: findByUuidUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EventProfileResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/event/{uuid}/cancel:
+    delete:
+      tags:
+        - Event Controller
+      summary: Cancel an event by it's uuid
+      operationId: cancelUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /v1/event/{uuid}/profile:
+    get:
+      tags:
+        - Event Controller
+      summary: Find an event's profile by it's uuid
+      operationId: findProfileUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EventProfileResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/quote-request/{eventUuid}:
+    get:
+      tags:
+        - Quote Request Controller
+      summary: List all quotes for
+      operationId: findAllUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: eventUuid
+          in: path
+          description: eventUuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/QuoteRequestTypeResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/quote-request/{eventUuid}/band/{bandUuid}:
+    post:
+      tags:
+        - Quote Request Controller
+      summary: Creates a new quote request for a band
+      operationId: createForBandUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: bandUuid
+          in: path
+          description: bandUuid
+          required: true
+          type: string
+        - name: eventUuid
+          in: path
+          description: eventUuid
+          required: true
+          type: string
+        - in: body
+          name: quoteRequest
+          description: quoteRequest
+          required: true
+          schema:
+            $ref: '#/definitions/QuoteRequestRequest'
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/quote-request/{uuid}/decline:
+    put:
+      tags:
+        - Quote Request Controller
+      summary: Decline a quote request
+      operationId: declineUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - in: body
+          name: declineQuoteRequest
+          description: declineQuoteRequest
+          required: true
+          schema:
+            $ref: '#/definitions/DeclineQuoteRequestRequest'
+        - name: uuid
+          in: path
+          description: uuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/quote/dashboard:
+    get:
+      tags:
+        - Quote Controller
+      summary: Generate the contractor dashboard
+      operationId: dashboardUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DashboardResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/quote/{uuid}/accept:
+    post:
+      tags:
+        - Quote Controller
+      summary: Accept and hire a quote
+      operationId: acceptUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/quote/{uuid}/contract:
+    get:
+      tags:
+        - Quote Controller
+      summary: Generate quote contract
+      operationId: generateContractUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/InputStreamResource'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /v1/quote/{uuid}/decline:
+    delete:
+      tags:
+        - Quote Controller
+      summary: Decline a quote
+      operationId: declineUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: uuid
+          in: path
+          description: uuid
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+definitions:
+  AddressRequest:
+    type: object
+    properties:
+      cityId:
+        type: integer
+        format: int64
+      complement:
+        type: string
+      countryIso:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      neighbour:
+        type: string
+      number:
+        type: integer
+        format: int32
+      stateIso:
+        type: string
+      street:
+        type: string
+      zipCode:
+        type: string
+    title: AddressRequest
+  AddressResponse:
+    type: object
+    properties:
+      city:
+        type: string
+      cityId:
+        type: integer
+        format: int64
+      complement:
+        type: string
+      country:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      neighbour:
+        type: string
+      number:
+        type: integer
+        format: int32
+      state:
+        type: string
+      street:
+        type: string
+      zipCode:
+        type: string
+    title: AddressResponse
+  DashboardResponse:
+    type: object
+    properties:
+      eventQuantityPerMonth:
+        $ref: '#/definitions/EventsQuantityPerMonthDashboardPartResponse'
+      nextEvents:
+        type: array
+        items:
+          $ref: '#/definitions/EventResponse'
+      quoteRequestStatuses:
+        $ref: '#/definitions/QuoteRequestStatusesDashboardPartResponse'
+    title: DashboardResponse
+  DeclineQuoteRequestRequest:
+    type: object
+    properties:
+      businessName:
+        type: string
+      businessType:
+        type: string
+        enum:
+          - BAND
+          - BUFFET
+    title: DeclineQuoteRequestRequest
+  EventProfileResponse:
+    type: object
+    properties:
+      address:
+        $ref: '#/definitions/AddressResponse'
+      dateTimeStamp:
+        type: integer
+        format: int64
+      description:
+        type: string
+      name:
+        type: string
+      uuid:
+        type: string
+    title: EventProfileResponse
+  EventRequest:
+    type: object
+    properties:
+      address:
+        $ref: '#/definitions/AddressRequest'
+      date:
+        type: string
+        format: date-time
+      dateTimestamp:
+        type: integer
+        format: int64
+      description:
+        type: string
+      name:
+        type: string
+    title: EventRequest
+  EventResponse:
+    type: object
+    properties:
+      active:
+        type: boolean
+      dateTimestamp:
+        type: integer
+        format: int64
+      description:
+        type: string
+      name:
+        type: string
+      uuid:
+        type: string
+    title: EventResponse
+  EventsQuantityPerMonthDashboardPartDataResponse:
+    type: object
+    properties:
+      values:
+        type: array
+        items:
+          type: integer
+          format: int64
+      year:
+        type: integer
+        format: int32
+    title: EventsQuantityPerMonthDashboardPartDataResponse
+  EventsQuantityPerMonthDashboardPartResponse:
+    type: object
+    properties:
+      backgroundColor:
+        type: string
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/EventsQuantityPerMonthDashboardPartDataResponse'
+      label:
+        type: string
+      labels:
+        type: array
+        items:
+          type: string
+    title: EventsQuantityPerMonthDashboardPartResponse
+  File:
+    type: object
+    properties:
+      absolute:
+        type: boolean
+      absoluteFile:
+        $ref: '#/definitions/File'
+      absolutePath:
+        type: string
+      canonicalFile:
+        $ref: '#/definitions/File'
+      canonicalPath:
+        type: string
+      directory:
+        type: boolean
+      file:
+        type: boolean
+      freeSpace:
+        type: integer
+        format: int64
+      hidden:
+        type: boolean
+      name:
+        type: string
+      parent:
+        type: string
+      parentFile:
+        $ref: '#/definitions/File'
+      path:
+        type: string
+      totalSpace:
+        type: integer
+        format: int64
+      usableSpace:
+        type: integer
+        format: int64
+    title: File
+  InputStream:
+    type: object
+    title: InputStream
+  InputStreamResource:
+    type: object
+    properties:
+      description:
+        type: string
+      file:
+        $ref: '#/definitions/File'
+      filename:
+        type: string
+      inputStream:
+        $ref: '#/definitions/InputStream'
+      open:
+        type: boolean
+      readable:
+        type: boolean
+      uri:
+        $ref: '#/definitions/URI'
+      url:
+        $ref: '#/definitions/URL'
+    title: InputStreamResource
+  ModelAndView:
+    type: object
+    properties:
+      empty:
+        type: boolean
+      model:
+        type: object
+      modelMap:
+        type: object
+        additionalProperties:
+          type: object
+      reference:
+        type: boolean
+      status:
+        type: string
+        enum:
+          - 100 CONTINUE
+          - 101 SWITCHING_PROTOCOLS
+          - 102 PROCESSING
+          - 103 CHECKPOINT
+          - 200 OK
+          - 201 CREATED
+          - 202 ACCEPTED
+          - 203 NON_AUTHORITATIVE_INFORMATION
+          - 204 NO_CONTENT
+          - 205 RESET_CONTENT
+          - 206 PARTIAL_CONTENT
+          - 207 MULTI_STATUS
+          - 208 ALREADY_REPORTED
+          - 226 IM_USED
+          - 300 MULTIPLE_CHOICES
+          - 301 MOVED_PERMANENTLY
+          - 302 FOUND
+          - 302 MOVED_TEMPORARILY
+          - 303 SEE_OTHER
+          - 304 NOT_MODIFIED
+          - 305 USE_PROXY
+          - 307 TEMPORARY_REDIRECT
+          - 308 PERMANENT_REDIRECT
+          - 400 BAD_REQUEST
+          - 401 UNAUTHORIZED
+          - 402 PAYMENT_REQUIRED
+          - 403 FORBIDDEN
+          - 404 NOT_FOUND
+          - 405 METHOD_NOT_ALLOWED
+          - 406 NOT_ACCEPTABLE
+          - 407 PROXY_AUTHENTICATION_REQUIRED
+          - 408 REQUEST_TIMEOUT
+          - 409 CONFLICT
+          - 410 GONE
+          - 411 LENGTH_REQUIRED
+          - 412 PRECONDITION_FAILED
+          - 413 PAYLOAD_TOO_LARGE
+          - 413 REQUEST_ENTITY_TOO_LARGE
+          - 414 URI_TOO_LONG
+          - 414 REQUEST_URI_TOO_LONG
+          - 415 UNSUPPORTED_MEDIA_TYPE
+          - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+          - 417 EXPECTATION_FAILED
+          - 418 I_AM_A_TEAPOT
+          - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+          - 420 METHOD_FAILURE
+          - 421 DESTINATION_LOCKED
+          - 422 UNPROCESSABLE_ENTITY
+          - 423 LOCKED
+          - 424 FAILED_DEPENDENCY
+          - 425 TOO_EARLY
+          - 426 UPGRADE_REQUIRED
+          - 428 PRECONDITION_REQUIRED
+          - 429 TOO_MANY_REQUESTS
+          - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+          - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+          - 500 INTERNAL_SERVER_ERROR
+          - 501 NOT_IMPLEMENTED
+          - 502 BAD_GATEWAY
+          - 503 SERVICE_UNAVAILABLE
+          - 504 GATEWAY_TIMEOUT
+          - 505 HTTP_VERSION_NOT_SUPPORTED
+          - 506 VARIANT_ALSO_NEGOTIATES
+          - 507 INSUFFICIENT_STORAGE
+          - 508 LOOP_DETECTED
+          - 509 BANDWIDTH_LIMIT_EXCEEDED
+          - 510 NOT_EXTENDED
+          - 511 NETWORK_AUTHENTICATION_REQUIRED
+      view:
+        $ref: '#/definitions/View'
+      viewName:
+        type: string
+    title: ModelAndView
+  MusicQuoteRequestRequest:
+    type: object
+    properties:
+      musicUuid:
+        type: string
+      observation:
+        type: string
+      order:
+        type: integer
+        format: int32
+    title: MusicQuoteRequestRequest
+  MusicianTypeQuoteRequestRequest:
+    type: object
+    properties:
+      musicianTypeUuid:
+        type: string
+      observation:
+        type: string
+      quantity:
+        type: integer
+        format: int32
+    title: MusicianTypeQuoteRequestRequest
+  Pageable:
+    type: object
+    properties:
+      offset:
+        type: integer
+        format: int64
+      pageNumber:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      paged:
+        type: boolean
+      sort:
+        $ref: '#/definitions/Sort'
+      unpaged:
+        type: boolean
+    title: Pageable
+  Page«EventResponse»:
+    type: object
+    properties:
+      content:
+        type: array
+        items:
+          $ref: '#/definitions/EventResponse'
+      empty:
+        type: boolean
+      first:
+        type: boolean
+      last:
+        type: boolean
+      number:
+        type: integer
+        format: int32
+      numberOfElements:
+        type: integer
+        format: int32
+      pageable:
+        $ref: '#/definitions/Pageable'
+      size:
+        type: integer
+        format: int32
+      sort:
+        $ref: '#/definitions/Sort'
+      totalElements:
+        type: integer
+        format: int64
+      totalPages:
+        type: integer
+        format: int32
+    title: Page«EventResponse»
+  QuoteRequestRequest:
+    type: object
+    properties:
+      description:
+        type: string
+      musicianTypes:
+        type: array
+        items:
+          $ref: '#/definitions/MusicianTypeQuoteRequestRequest'
+      playlist:
+        type: array
+        items:
+          $ref: '#/definitions/MusicQuoteRequestRequest'
+    title: QuoteRequestRequest
+  QuoteRequestResponse:
+    type: object
+    properties:
+      observation:
+        type: string
+      price:
+        type: string
+      quoteRequestUuid:
+        type: string
+      quoteUuid:
+        type: string
+      serviceUuid:
+        type: string
+      status:
+        type: string
+        enum:
+          - NON_ANSWERED
+          - ANSWERED
+          - DECLINED
+          - HIRED
+      statusDescription:
+        type: string
+    title: QuoteRequestResponse
+  QuoteRequestStatusesDashboardPartResponse:
+    type: object
+    properties:
+      backgroundColor:
+        type: array
+        items:
+          type: string
+      data:
+        type: array
+        items:
+          type: integer
+          format: int64
+      hoverBackgroundColor:
+        type: array
+        items:
+          type: string
+      labels:
+        type: array
+        items:
+          type: string
+    title: QuoteRequestStatusesDashboardPartResponse
+  QuoteRequestTypeResponse:
+    type: object
+    properties:
+      businessType:
+        type: string
+        enum:
+          - BAND
+          - BUFFET
+      name:
+        type: string
+      quoteRequests:
+        type: array
+        items:
+          $ref: '#/definitions/QuoteRequestResponse'
+    title: QuoteRequestTypeResponse
+  Sort:
+    type: object
+    properties:
+      empty:
+        type: boolean
+      sorted:
+        type: boolean
+      unsorted:
+        type: boolean
+    title: Sort
+  URI:
+    type: object
+    properties:
+      absolute:
+        type: boolean
+      authority:
+        type: string
+      fragment:
+        type: string
+      host:
+        type: string
+      opaque:
+        type: boolean
+      path:
+        type: string
+      port:
+        type: integer
+        format: int32
+      query:
+        type: string
+      rawAuthority:
+        type: string
+      rawFragment:
+        type: string
+      rawPath:
+        type: string
+      rawQuery:
+        type: string
+      rawSchemeSpecificPart:
+        type: string
+      rawUserInfo:
+        type: string
+      scheme:
+        type: string
+      schemeSpecificPart:
+        type: string
+      userInfo:
+        type: string
+    title: URI
+  URL:
+    type: object
+    properties:
+      authority:
+        type: string
+      content:
+        type: object
+      defaultPort:
+        type: integer
+        format: int32
+      file:
+        type: string
+      host:
+        type: string
+      path:
+        type: string
+      port:
+        type: integer
+        format: int32
+      protocol:
+        type: string
+      query:
+        type: string
+      ref:
+        type: string
+      userInfo:
+        type: string
+    title: URL
+  View:
+    type: object
+    properties:
+      contentType:
+        type: string
+    title: View
